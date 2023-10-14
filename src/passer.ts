@@ -23,8 +23,10 @@ export default class Passer {
   private say() {
     if (this.token.type === "string") {
       console.log(this.token.value);
+    } else if (this.variables[this.token.value]) {
+      console.log(this.variables[this.token.value]);
     } else {
-      throw new Error(`Expected a string but got ${this.token.value}`);
+      throw new Error(`Variable ${this.token.value} is not defined`);
     }
   }
 
