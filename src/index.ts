@@ -10,19 +10,10 @@ type Token =
       value: string;
     };
 
-export class LoveLanguage {
+class Tokenizor {
   constructor(private readonly code: string) {}
 
-  run() {
-    try {
-      const tokens = this.tokenize();
-      this.parse(tokens);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  private tokenize(): Token[] {
+  public tokenize(): Token[] {
     const tokens: Token[] = [];
     let pos = 0;
 
@@ -84,6 +75,20 @@ export class LoveLanguage {
     }
 
     return tokens;
+  }
+}
+
+export class LoveLanguage {
+  constructor(private readonly code: string) {}
+
+  run() {
+    try {
+      const tokenizer = new Tokenizor(this.code);
+      const tokens = tokenizer.tokenize();
+      this.parse(tokens);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   private parse(tokens: Token[]) {
