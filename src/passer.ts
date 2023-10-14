@@ -66,6 +66,16 @@ export default class Passer {
     this.variables[variableName] = variableValue;
   }
 
+  /**
+   * Clean the memory. This will remove all the variables.
+   */
+  private cleanMemory() {
+    this.variables = {};
+  }
+
+  /**
+   * Pass the tokens.
+   */
   public pass() {
     if (this.passed) {
       throw new Error("Cannot pass twice");
@@ -89,5 +99,7 @@ export default class Passer {
 
       this.move();
     }
+
+    this.cleanMemory();
   }
 }
