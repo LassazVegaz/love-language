@@ -1,1 +1,2 @@
-say "I love you"
+love a as a string "I love you"
+say a
