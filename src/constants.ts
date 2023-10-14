@@ -1,1 +1,1 @@
-export const keywords = ["say"] as const;
+export const keywords = ["say", "love", "as", "a"] as const;
