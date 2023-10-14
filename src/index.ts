@@ -1,7 +1,5 @@
 import Passer from "./passer";
 import Tokenizor from "./tokenizer";
-import { Token } from "./types";
-
 export class LoveLanguage {
   constructor(private readonly code: string) {}
 
