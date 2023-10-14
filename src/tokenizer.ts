@@ -73,6 +73,7 @@ export default class Tokenizor {
 
       // start of a string
       else if (this.char === '"') {
+        this.move();
         let word = this.readWord('"');
 
         // first character after the above read string should be a "
