@@ -1,5 +1,5 @@
 import { Token } from "./types";
-import { VARIABLE_TYPES } from "./constants";
+import { VARIABLE_TYPES, DEFAULT_VARIABLES_VALUES } from "./constants";
 
 export default class Passer {
   private passed = false;
@@ -31,8 +31,8 @@ export default class Passer {
   }
 
   /**
-   * Save a variable. This will throw an error if the current token is not a variable name or if the
-   * next tokens are not "as a" followed by a variable type and a value.
+   * Save a variable. This will throw an error if the current token is not a variable name or if
+   * the next tokens are not "as a" followed by a variable type.
    */
   private saveVariable() {
     // get variable name
@@ -59,10 +59,9 @@ export default class Passer {
     const variableType = this.token.value;
     if (!VARIABLE_TYPES.includes(variableType as any))
       throw new Error(`Invalid variable type ${variableType}`);
-    this.move();
 
-    // next one should be the value
-    const variableValue = this.tokens[this.pos].value;
+    // get default value
+    const variableValue = DEFAULT_VARIABLES_VALUES[variableType];
 
     // save the variable
     this.variables[variableName] = variableValue;
