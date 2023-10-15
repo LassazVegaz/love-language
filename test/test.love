@@ -1,2 +1,4 @@
-love a as a string "I love you"
+love a as a string "I Love You"
+love b as a string "1000 times"
 say a
+say b
