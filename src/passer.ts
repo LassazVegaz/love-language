@@ -23,7 +23,7 @@ export default class Passer {
    * tokens is not a string, number or a defined variable.
    */
   private say() {
-    while (this.token.type !== "keyword" || this.token.value !== "\n") {
+    while (this.token.type !== "keyword" || this.token.value !== "EOL") {
       if (this.token.type === "string") {
         console.log(this.token.value);
       } else if (this.variables[this.token.value]) {
