@@ -17,16 +17,22 @@ export default class Passer {
   }
 
   /**
-   * Execute say function for current token. This will throw an error if the current token is not a
-   * string.
+   * Execute say function.
+   *
+   * Print from current token to end of the line token. This will throw an error if any of the
+   * tokens is not a string, number or a defined variable.
    */
   private say() {
-    if (this.token.type === "string") {
-      console.log(this.token.value);
-    } else if (this.variables[this.token.value]) {
-      console.log(this.variables[this.token.value]);
-    } else {
-      throw new Error(`Variable ${this.token.value} is not defined`);
+    while (this.token.type !== "keyword" || this.token.value !== "\n") {
+      if (this.token.type === "string") {
+        console.log(this.token.value);
+      } else if (this.variables[this.token.value]) {
+        console.log(this.variables[this.token.value]);
+      } else {
+        throw new Error(`Variable ${this.token.value} is not defined`);
+      }
+
+      this.move();
     }
   }
 
@@ -56,12 +62,12 @@ export default class Passer {
       throw new Error(
         `Expected a variable type but got ${this.tokens[this.pos].value}`
       );
-    const variableType = this.token.value;
+    const variableType = this.tokens[this.pos].value;
     if (!VARIABLE_TYPES.includes(variableType as any))
       throw new Error(`Invalid variable type ${variableType}`);
 
     // get default value
-    const variableValue = DEFAULT_VARIABLES_VALUES[variableType];
+    const variableValue = (DEFAULT_VARIABLES_VALUES as any)[variableType];
 
     // save the variable
     this.variables[variableName] = variableValue;

@@ -1,6 +1,6 @@
 import { Keyword, Token } from "./types";
 
-const DEFAULT_WORD_TERMINATORS = ["\n", "\r"] as const;
+const DEFAULT_WORD_TERMINATORS = ["\n"] as const;
 
 export default class Tokenizor {
   /**
@@ -66,9 +66,15 @@ export default class Tokenizor {
     this.pos = 0;
 
     while (this.pos < this.code.length) {
-      // Ignore whitespace and newlines
-      if (this.char === " " || this.char === "\n" || this.char === "\r") {
+      // Ignore whitespace
+      if (this.char === " ") {
         this.pos++;
+      }
+
+      // new line character
+      else if (this.char === "\n") {
+        this.addToken({ type: "keyword", value: "\n" });
+        this.move();
       }
 
       // start of a string
@@ -82,14 +88,12 @@ export default class Tokenizor {
         }
 
         this.addToken({ type: "string", value: word });
-        this.move();
       }
 
       // everything else if considered as keywords
       else {
         const word = this.readWord(" ");
         this.addToken({ type: "keyword", value: word as Keyword });
-        this.move();
       }
     }
 
