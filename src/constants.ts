@@ -3,7 +3,7 @@
 // finds \n or \r\n, it will replace them with EOL.
 export const EOL = "EOL" as const;
 
-export const KEYWORDS = ["say", "love", "as", "a", EOL] as const;
+export const KEYWORDS = ["say", "love", "as", "a", "is", EOL] as const;
 
 export const VARIABLE_TYPES = ["string", "number"] as const;
 
