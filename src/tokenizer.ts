@@ -1,6 +1,8 @@
+import os from "os";
 import { Keyword, Token } from "./types";
+import { EOL } from "./constants";
 
-const DEFAULT_WORD_TERMINATORS = ["\n"] as const;
+const DEFAULT_WORD_TERMINATORS = [os.EOL] as const;
 
 export default class Tokenizor {
   /**
@@ -32,6 +34,24 @@ export default class Tokenizor {
   }
 
   /**
+   * Check if the current character is the end of the line.
+   */
+  private isEndOfLine() {
+    let t = "";
+    for (let i = 0; i < os.EOL.length; i++) {
+      t += this.code[this.pos + i];
+    }
+    return t === os.EOL;
+  }
+
+  /**
+   * Move to the end of the line. This will move the `pos` variable to the end of the line.
+   */
+  private moveToEndOfLine() {
+    for (let i = 0; i < os.EOL.length; i++) this.move();
+  }
+
+  /**
    * Get a word from the code. This will keep moving forward from current position (`pos`)
    * until it reaches a character that is in the `terminators` or `DEFAULT_WORD_TERMINATORS`, or
    * the end of the code. Please note that this function modifies the `pos` variable.
@@ -44,7 +64,7 @@ export default class Tokenizor {
     while (
       this.pos < this.code.length &&
       !terminators.includes(this.char) &&
-      !DEFAULT_WORD_TERMINATORS.includes(this.char as any)
+      !this.isEndOfLine()
     ) {
       word += this.char;
       this.move();
@@ -72,9 +92,9 @@ export default class Tokenizor {
       }
 
       // new line character
-      else if (this.char === "\n") {
-        this.addToken({ type: "keyword", value: "\n" });
-        this.move();
+      else if (this.isEndOfLine()) {
+        this.addToken({ type: "keyword", value: "EOL" });
+        this.moveToEndOfLine();
       }
 
       // start of a string
@@ -88,6 +108,7 @@ export default class Tokenizor {
         }
 
         this.addToken({ type: "string", value: word });
+        this.move();
       }
 
       // everything else if considered as keywords
@@ -95,6 +116,14 @@ export default class Tokenizor {
         const word = this.readWord(" ");
         this.addToken({ type: "keyword", value: word as Keyword });
       }
+    }
+
+    // if last token is not EOL, add it
+    if (
+      this.tokens.length > 0 &&
+      this.tokens[this.tokens.length - 1].value !== EOL
+    ) {
+      this.addToken({ type: "keyword", value: "EOL" });
     }
 
     return this.tokens;
