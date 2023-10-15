@@ -14,19 +14,28 @@ You have to be polit. Print is not enough. You have to say it. So, you have to u
 say "I love you"
 ```
 
-### Create variables
+### Create loved ones
 
-You can't just create variables. You have to love them.
+You can create loved ones with `love` keyword.
 
 ```love
-love name as a string "John"
-love age as a number 20
+love name as a string
+love age as a number
 ```
 
 You have to zone your loved ones. I know it is bad but we do it anyway. There are 2 types of zones
 
 - number
 - string
+
+### Change loved ones
+
+When you love someone, you can easily change them.
+
+```love
+name is "Jane"
+age is 21
+```
 
 ## How to make love 💕
 
