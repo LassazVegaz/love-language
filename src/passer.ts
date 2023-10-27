@@ -101,7 +101,10 @@ export default class Passer {
     this.move();
 
     // next one should be a value
-    if (this.tokens[this.pos].type !== "string")
+    if (
+      this.tokens[this.pos].type !== "string" &&
+      Number.isNaN(this.tokens[this.pos].value)
+    )
       throw new Error(
         `Expected a value but got ${this.tokens[this.pos].value}`
       );
