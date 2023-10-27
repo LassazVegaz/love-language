@@ -24,17 +24,24 @@ export default class Passer {
    * line.
    */
   private say() {
+    let string: string[] = [];
     while (this.token.type !== "keyword" || this.token.value !== "EOL") {
       if (this.token.type === "string") {
-        console.log(this.token.value);
+        string.push(this.token.value);
       } else if (this.variables[this.token.value]) {
-        console.log(this.variables[this.token.value]);
+        string.push(this.variables[this.token.value]);
       } else {
         throw new Error(`Variable ${this.token.value} is not defined`);
       }
 
       this.move();
     }
+
+    if (string.length === 0) {
+      throw new Error("Say function needs at least one argument");
+    }
+
+    console.log(string.join(" "));
   }
 
   /**
