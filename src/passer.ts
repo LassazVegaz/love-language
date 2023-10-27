@@ -136,7 +136,13 @@ export default class Passer {
     this.passed = true;
 
     while (this.pos < this.tokens.length) {
-      if (this.token.type === "keyword") {
+      // ignore EOL
+      if (this.token.type === "keyword" && this.token.value === "EOL") {
+        this.move();
+      }
+
+      // start of a statement
+      else if (this.token.type === "keyword") {
         // say function
         if (this.token.value === "say") {
           this.move();
@@ -161,8 +167,6 @@ export default class Passer {
       } else {
         throw new Error(`Unexpected token ${this.token.value}`);
       }
-
-      this.move();
     }
 
     this.cleanMemory();
