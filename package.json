@@ -12,7 +12,6 @@
   },
   "license": "CC-BY-4.0",
   "devDependencies": {
-    "@types/node": "^20.8.5",
-    "ts-node": "^10.9.1"
+    "@types/node": "^20.8.5"
   }
 }
