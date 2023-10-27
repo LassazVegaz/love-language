@@ -1,2 +1,9 @@
-love a as a string "I love you"
-say a
+love action as a string
+love her as a string
+love magnitude as a number
+
+action is "Love"
+her is "☀️ "
+magnitude is 1000
+
+say action her magnitude "times"

@@ -1,6 +1,6 @@
-import { keywords } from "./constants";
+import { KEYWORDS } from "./constants";
 
-export type Keyword = (typeof keywords)[number];
+export type Keyword = (typeof KEYWORDS)[number];
 
 export type Token =
   | {

@@ -1,5 +1,7 @@
 # A Programming Language Made with Love 💗
 
+![Logo](./assets/logo.png)
+
 ## Warning ⚠️
 
 You will fall in love with this language. 😍
@@ -14,19 +16,28 @@ You have to be polit. Print is not enough. You have to say it. So, you have to u
 say "I love you"
 ```
 
-### Create variables
+### Create loved ones
 
-You can't just create variables. You have to love them.
+You can create loved ones with `love` keyword.
 
 ```love
-love name as a string "John"
-love age as a number 20
+love name as a string
+love age as a number
 ```
 
 You have to zone your loved ones. I know it is bad but we do it anyway. There are 2 types of zones
 
 - number
 - string
+
+### Change loved ones
+
+When you love someone, you can easily change them.
+
+```love
+name is "Jane"
+age is 21
+```
 
 ## How to make love 💕
 
@@ -39,6 +50,26 @@ You have to zone your loved ones. I know it is bad but we do it anyway. There ar
 
 Add more love to [test.love](./test/test.love) file and run `pnpm test` again to make love.  
 Or press `F5` in VSCode.
+
+## A sample relationship 👨‍❤️‍👩🧑‍❤️‍👨👩‍❤️‍👩
+
+```love
+love action as a string
+love her as a string
+love magnitude as a number
+
+action is "Love"
+her is "☀️ "
+magnitude is 1000
+
+say action her magnitude "times"
+```
+
+output:
+
+```
+Love ☀️ 1000 times
+```
 
 ## License
 
