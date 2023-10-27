@@ -49,6 +49,26 @@ age is 21
 Add more love to [test.love](./test/test.love) file and run `pnpm test` again to make love.  
 Or press `F5` in VSCode.
 
+## A sample relationship 👨‍❤️‍👩🧑‍❤️‍👨👩‍❤️‍👩
+
+```love
+love action as a string
+love her as a string
+love magnitude as a number
+
+action is "Love"
+her is "☀️ "
+magnitude is 1000
+
+say action her magnitude "times"
+```
+
+output:
+
+```
+Love ☀️ 1000 times
+```
+
 ## License
 
 This work (Love Language) is licensed under a Creative Commons Attribution 4.0 International License.
