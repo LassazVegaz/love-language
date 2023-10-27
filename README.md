@@ -1,5 +1,7 @@
 # A Programming Language Made with Love 💗
 
+![Logo](./assets/logo.png)
+
 ## Warning ⚠️
 
 You will fall in love with this language. 😍
